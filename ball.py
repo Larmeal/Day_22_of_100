@@ -1,4 +1,5 @@
-from turtle import Turtle
+from turtle import Turtle, position
+import random
 
 class Ball(Turtle):
 
@@ -11,11 +12,14 @@ class Ball(Turtle):
         self.y_move = 10
         self.move_speed = 0.04
 
+    def ball_start(self):
+        self.goto(10, random.randint(0, 40))
+
     def move(self):
         # เป็นการทำให้ลูกบอลเริ่มเคลื่อนที่จากตำแหน่งที่กำหนด ซึ่งการกำหนด x_move, y_move นั้นส่่่งผมให้ เราสามารถปรับแต่งการเคลื่อนที่ของลูกบอลได้
         position_x = self.xcor() + self.x_move
-        position_y = self.ycor() + self.y_move
-        self.goto(position_x, position_y)
+        self.position_y = self.ycor() + self.y_move
+        self.goto(position_x, self.position_y)
 
     def bounce_y(self):
         # เป็นแนวคิดที่ชอบมากนั้นก็คือการสะท้อนให้ลูกบอลนั้นเด้งกลับไปทางทิศตรงกันข้ามในแนวแกน Y
@@ -28,7 +32,7 @@ class Ball(Turtle):
 
     def reset_ball(self):
         # เป็นการเริ่มต้นใหม่หลังจากรู้ผลแพ้ - ชนะ
-        self.goto(0, 0)
+        self.goto(0, random.randint(0, 100))
         self.move_speed = 0.04
         # เมื่อเริ่มเกมลูกบอลจะพุ่งไปในทางตรงกันข้ามกับตาก่อนหน้า
         self.bounce_x()

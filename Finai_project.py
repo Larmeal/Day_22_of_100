@@ -8,16 +8,17 @@ import time
 
 screen = Screen()
 screen.bgcolor("black")
-screen.setup(width=800, height=600)
+screen.setup(width=1500, height=600)
 screen.title("Pong")
 screen.tracer(0)
 
 scoreboard = Scoreboard()
 ball = Ball()
 
+
 # กำหนดให้ paddle แต่ละฝ่ายอยู่ที่ตำแหน่งอะไร โดยให้ class _ _ init_ _ กำหนด (self, position) เพื่อที่จะใส่ตำแหน่งของทั้ง สองฝ่ายโดยที่ใช้แค่ class เดียว
-r_paddle = Paddle((350, 0))
-l_paddle = Paddle((-350, 0))
+r_paddle = Paddle((730, 0))
+l_paddle = Paddle((-740, 0))
 
 # สร้างการควบคุมทั้งสองฝ่าย
 screen.listen()
@@ -41,15 +42,15 @@ while again:
         ball.bounce_y()
 
     # ถ้ากรณีที่ลูกบอลเด้งไปชนกับ paddle จะทำให้ลูกบอลเด้งกลับ
-    if ball.distance(r_paddle) < 50 and ball.xcor() > 340 or ball.distance(l_paddle) < 50 and ball.xcor() < -340:
+    if ball.distance(r_paddle) < 70 and ball.xcor() > 700 or ball.distance(l_paddle) < 70 and ball.xcor() < -700:
         ball.bounce_x()
 
     # ถ้าหากลูกบอลเลยพื้นที่ด้านหลังไปก็จะทำให้อีกฝ่ายได้คะแนนไป
-    if ball.xcor() > 380:
+    if ball.xcor() > 740:
         ball.reset_ball()
         scoreboard.l_point()
 
-    if ball.xcor() < -380:
+    if ball.xcor() < -740:
         ball.reset_ball()
         scoreboard.r_point()
 
